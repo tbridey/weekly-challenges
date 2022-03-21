@@ -1,6 +1,8 @@
 package linkedList_StackChallenge;
 
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
@@ -22,8 +24,36 @@ Each method should run in constant time.
 
 public class listStack {
 
-    public static void stackInit(Stack stack) {
-        stack.push("val");
+    public static int max = 0;
+
+    public static void stackInit(Stack stack, int val) {
+        stack.push(val);
+        try {
+            stackMax(stack, val);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        System.out.println("stack is initialized with values: " + stack);
+    }
+
+    public static void stackPop(Stack stack) throws Exception {
+        if(stack.isEmpty()){
+            throw new Exception("Stack is currently empty");
+        }else{
+            stack.pop();
+            System.out.println("Top value removed, the values of the stack are now: " + stack);
+        }
+    }
+
+    public static void stackMax(Stack stack, int val) throws Exception {
+        if(stack.isEmpty()){
+            throw new Exception("Stack is currently empty");
+        }else{
+            if(max < val){
+                max = val;
+            }
+        }
     }
 
     public static int findIntersect(List<Integer> a, List<Integer> b) {
@@ -53,6 +83,15 @@ public class listStack {
         
         // Initialize stack
         Stack<String> stack = new Stack<>();
-        stackInit(stack);
+        // stackInit(stack, 4);
+        // stackInit(stack, 92);
+        // stackInit(stack, 15);
+        try {
+            stackPop(stack);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        System.out.println("max value of the stack is: " + max);
     }
 }
